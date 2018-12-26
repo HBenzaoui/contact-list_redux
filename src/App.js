@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header branding="Contact Manager" />
         <div className="container">
           <ContactList />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

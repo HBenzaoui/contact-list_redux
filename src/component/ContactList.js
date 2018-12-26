@@ -28,16 +28,11 @@ export class ContactList extends Component {
   render() {
     const { contactList } = this.state;
     return (
-      <div>
+      <React.Fragment>
         {contactList.map(contact => (
-          <Contact
-            key={contact.id}
-            name={contact.name}
-            email={contact.email}
-            phone={contact.phone}
-          />
+          <Contact key={contact.id} contact={contact} />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }

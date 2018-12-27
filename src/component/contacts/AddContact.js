@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../context';
 import uuid from 'uuid';
+import TextInputGroup from '../layout/TextInputGroup';
 
 class AddContact extends Component {
   state = {
@@ -48,36 +49,26 @@ class AddContact extends Component {
               <div className="card-header">Add Contact</div>
               <div className="card-body">
                 <form onSubmit={this.handleSubmit.bind(this, dispatch)}>
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      className="form-control form-control-lg"
-                      value={name}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      className="form-control form-control-lg"
-                      value={email}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="phone">Phone</label>
-                    <input
-                      type="text"
-                      name="phone"
-                      className="form-control form-control-lg"
-                      value={phone}
-                      onChange={this.handleChange}
-                    />
-                  </div>
+                  <TextInputGroup
+                    label="Name"
+                    name="name"
+                    value={name}
+                    onChange={this.handleChange}
+                  />
+
+                  <TextInputGroup
+                    label="Email"
+                    name="email"
+                    value={email}
+                    type="email"
+                    onChange={this.handleChange}
+                  />
+                  <TextInputGroup
+                    label="Phone"
+                    name="phone"
+                    value={phone}
+                    onChange={this.handleChange}
+                  />
                   <input
                     className="btn btn-info btn-block"
                     type="submit"

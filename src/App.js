@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from './component/Header';
-import ContactList from './component/ContactList';
+import Header from './component/layout/Header';
+import ContactList from './component/contacts/ContactList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from './context';
 

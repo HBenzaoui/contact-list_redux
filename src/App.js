@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './component/layout/Header';
 import ContactList from './component/contacts/ContactList';
+import AddContact from './component/contacts/AddContact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from './context';
 
@@ -11,6 +12,7 @@ class App extends Component {
         <React.Fragment>
           <Header branding="Contact Manager" />
           <div className="container">
+            <AddContact />
             <ContactList />
           </div>
         </React.Fragment>

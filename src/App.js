@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './component/layout/Header';
 import About from './component/pages/About';
+import NotFound from './component/pages/NotFound';
 import ContactList from './component/contacts/ContactList';
 import AddContact from './component/contacts/AddContact';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,7 @@ class App extends Component {
                 <Route exact path="/" component={ContactList} />
                 <Route exact path="/contact/add" component={AddContact} />
                 <Route exact path="/about" component={About} />
+                <Route component={NotFound} />
               </Switch>
             </div>
           </React.Fragment>

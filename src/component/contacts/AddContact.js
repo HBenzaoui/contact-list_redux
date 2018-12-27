@@ -7,7 +7,8 @@ class AddContact extends Component {
   state = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    errors: {}
   };
 
   handleChange = e => {
@@ -20,6 +21,33 @@ class AddContact extends Component {
     e.preventDefault();
 
     const { name, email, phone } = this.state;
+
+    //check for error
+
+    if (name === '') {
+      this.setState({
+        errors: {
+          name: 'Name is required'
+        }
+      });
+      return;
+    }
+    if (email === '') {
+      this.setState({
+        errors: {
+          email: 'Email is required'
+        }
+      });
+      return;
+    }
+    if (phone === '') {
+      this.setState({
+        errors: {
+          phone: 'Phone is required'
+        }
+      });
+      return;
+    }
 
     const newContact = {
       id: uuid(),
@@ -34,12 +62,13 @@ class AddContact extends Component {
     this.setState({
       name: '',
       email: '',
-      phone: ''
+      phone: '',
+      errors: {}
     });
   };
 
   render() {
-    const { name, email, phone } = this.state;
+    const { name, email, phone, errors } = this.state;
     return (
       <Consumer>
         {value => {
@@ -54,6 +83,7 @@ class AddContact extends Component {
                     name="name"
                     value={name}
                     onChange={this.handleChange}
+                    error={errors.name}
                   />
 
                   <TextInputGroup
@@ -62,12 +92,14 @@ class AddContact extends Component {
                     value={email}
                     type="email"
                     onChange={this.handleChange}
+                    error={errors.email}
                   />
                   <TextInputGroup
                     label="Phone"
                     name="phone"
                     value={phone}
                     onChange={this.handleChange}
+                    error={errors.phone}
                   />
                   <input
                     className="btn btn-info btn-block"

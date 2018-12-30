@@ -7,6 +7,7 @@ import About from './component/pages/About';
 import NotFound from './component/pages/NotFound';
 import ContactList from './component/contacts/ContactList';
 import AddContact from './component/contacts/AddContact';
+import EditContact from './component/contacts/EditContact';
 import Test from './component/test/Test';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={ContactList} />
                 <Route exact path="/contact/add" component={AddContact} />
+                <Route exact path="/contact/edit/:id" component={EditContact} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/test" component={Test} />
                 <Route component={NotFound} />

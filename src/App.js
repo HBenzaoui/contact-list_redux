@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <React.Fragment>
             <Header branding="Contact Manager" />
             <div className="container">

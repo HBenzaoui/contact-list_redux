@@ -49,7 +49,6 @@ class Contact extends Component {
                       color: 'green',
                       marginRight: '2rem'
                     }}
-                    onClick={this.handleDeleteBtn.bind(this, id, dispatch)}
                   />
                 </Link>
               </h4>

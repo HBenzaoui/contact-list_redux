@@ -1,32 +1,16 @@
 import React, { Component } from 'react';
 import Contact from './Contact';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { GET_CONTACTS } from '../../actions/types';
 
 class ContactList extends Component {
-  state = {
-    contactList: [
-      {
-        id: 1,
-        name: 'Hamza',
-        email: 'Hamzapdd@gmail.com',
-        phone: '0661 45 81 97'
-      },
-      {
-        id: 2,
-        name: 'Bilal',
-        email: 'bilal@gmail.com',
-        phone: '0770 75 41 47'
-      },
-      {
-        id: 3,
-        name: 'Moha',
-        email: 'info@yahoo.com',
-        phone: '0550 00 00 00'
-      }
-    ]
-  };
+  componentDidMount() {
+    this.props.getContactList();
+  }
 
   render() {
-    const { contactList } = this.state;
+    const { contactList } = this.props;
     return (
       <React.Fragment>
         <h1 className="display-4 mb-2">
@@ -40,4 +24,20 @@ class ContactList extends Component {
   }
 }
 
-export default ContactList;
+ContactList.PropTypes = {
+  contactList: PropTypes.array.isRequired,
+  getContactList: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  contactList: state.contact.contactList
+});
+
+const mapDispatchToProps = dispatch => ({
+  getContactList: () => dispatch({ type: GET_CONTACTS })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContactList);

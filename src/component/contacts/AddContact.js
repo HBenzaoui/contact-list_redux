@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Consumer } from '../../context';
 // import uuid from 'uuid';
 import TextInputGroup from '../layout/TextInputGroup';
 
@@ -73,48 +72,41 @@ class AddContact extends Component {
   render() {
     const { name, email, phone, errors } = this.state;
     return (
-      <Consumer>
-        {value => {
-          const { dispatch } = value;
-          return (
-            <div className="card mb-3">
-              <div className="card-header">Add Contact</div>
-              <div className="card-body">
-                <form onSubmit={this.handleSubmit.bind(this, dispatch)}>
-                  <TextInputGroup
-                    label="Name"
-                    name="name"
-                    value={name}
-                    onChange={this.handleChange}
-                    error={errors.name}
-                  />
+      <div className="card mb-3">
+        <div className="card-header">Add Contact</div>
+        <div className="card-body">
+          <form onSubmit={this.handleSubmit}>
+            <TextInputGroup
+              label="Name"
+              name="name"
+              value={name}
+              onChange={this.handleChange}
+              error={errors.name}
+            />
 
-                  <TextInputGroup
-                    label="Email"
-                    name="email"
-                    value={email}
-                    type="email"
-                    onChange={this.handleChange}
-                    error={errors.email}
-                  />
-                  <TextInputGroup
-                    label="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange={this.handleChange}
-                    error={errors.phone}
-                  />
-                  <input
-                    className="btn btn-info btn-block"
-                    type="submit"
-                    value="Add Contact"
-                  />
-                </form>
-              </div>
-            </div>
-          );
-        }}
-      </Consumer>
+            <TextInputGroup
+              label="Email"
+              name="email"
+              value={email}
+              type="email"
+              onChange={this.handleChange}
+              error={errors.email}
+            />
+            <TextInputGroup
+              label="Phone"
+              name="phone"
+              value={phone}
+              onChange={this.handleChange}
+              error={errors.phone}
+            />
+            <input
+              className="btn btn-info btn-block"
+              type="submit"
+              value="Add Contact"
+            />
+          </form>
+        </div>
+      </div>
     );
   }
 }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Consumer } from '../../context';
 import TextInputGroup from '../layout/TextInputGroup';
-import Axios from 'axios';
 
 class EditContact extends Component {
   state = {
@@ -10,20 +8,6 @@ class EditContact extends Component {
     phone: '',
     errors: {}
   };
-
-  async componentDidMount() {
-    //this is to get the id form the params of the website
-    const { id } = this.props.match.params;
-    const res = await Axios.get(
-      `https://jsonplaceholder.typicode.com/users/${id}`
-    );
-
-    this.setState({
-      name: res.data.name,
-      email: res.data.email,
-      phone: res.data.phone
-    });
-  }
 
   handleChange = e => {
     this.setState({
@@ -69,11 +53,8 @@ class EditContact extends Component {
     };
 
     const { id } = this.props.match.params;
-    const res = await Axios.put(
-      `//jsonplaceholder.typicode.com/users/${id}`,
-      updatedContact
-    );
-    dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
+
+    //TODO: update contact
 
     //Clear state(inputs)
     this.setState({
@@ -90,48 +71,41 @@ class EditContact extends Component {
   render() {
     const { name, email, phone, errors } = this.state;
     return (
-      <Consumer>
-        {value => {
-          const { dispatch } = value;
-          return (
-            <div className="card mb-3">
-              <div className="card-header">Edit Contact</div>
-              <div className="card-body">
-                <form onSubmit={this.handleSubmit.bind(this, dispatch)}>
-                  <TextInputGroup
-                    label="Name"
-                    name="name"
-                    value={name}
-                    onChange={this.handleChange}
-                    error={errors.name}
-                  />
+      <div className="card mb-3">
+        <div className="card-header">Edit Contact</div>
+        <div className="card-body">
+          <form onSubmit={this.handleSubmit}>
+            <TextInputGroup
+              label="Name"
+              name="name"
+              value={name}
+              onChange={this.handleChange}
+              error={errors.name}
+            />
 
-                  <TextInputGroup
-                    label="Email"
-                    name="email"
-                    value={email}
-                    type="email"
-                    onChange={this.handleChange}
-                    error={errors.email}
-                  />
-                  <TextInputGroup
-                    label="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange={this.handleChange}
-                    error={errors.phone}
-                  />
-                  <input
-                    className="btn btn-success btn-block"
-                    type="submit"
-                    value="Update Contact"
-                  />
-                </form>
-              </div>
-            </div>
-          );
-        }}
-      </Consumer>
+            <TextInputGroup
+              label="Email"
+              name="email"
+              value={email}
+              type="email"
+              onChange={this.handleChange}
+              error={errors.email}
+            />
+            <TextInputGroup
+              label="Phone"
+              name="phone"
+              value={phone}
+              onChange={this.handleChange}
+              error={errors.phone}
+            />
+            <input
+              className="btn btn-success btn-block"
+              type="submit"
+              value="Update Contact"
+            />
+          </form>
+        </div>
+      </div>
     );
   }
 }

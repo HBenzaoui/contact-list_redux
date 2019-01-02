@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Consumer } from '../../context';
-import Axios from 'axios';
 
 class Contact extends Component {
   state = {
     showDetails: false
   };
 
-  handleDeleteBtn = async (id, dispatch) => {
-    await Axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
-    dispatch({ type: 'DELETE_CONTACT', payload: id });
-  };
+  handleDeleteBtn = () => {};
 
   render() {
     const { id, name, email, phone } = this.props.contact;

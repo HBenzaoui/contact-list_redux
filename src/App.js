@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Provider } from './context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './component/layout/Header';
 import About from './component/pages/About';
@@ -10,10 +9,13 @@ import AddContact from './component/contacts/AddContact';
 import EditContact from './component/contacts/EditContact';
 import Test from './component/test/Test';
 
+import store from './store';
+import { Provider } from 'react-redux';
+
 class App extends Component {
   render() {
     return (
-      <Provider>
+      <Provider store={store}>
         <Router basename={process.env.PUBLIC_URL}>
           <React.Fragment>
             <Header branding="Contact Manager" />

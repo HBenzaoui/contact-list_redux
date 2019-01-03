@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-// import uuid from 'uuid';
 import TextInputGroup from '../layout/TextInputGroup';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import uuid from 'uuid';
+import { addContact } from '../../actions/contactActions';
 
 class AddContact extends Component {
   state = {
@@ -16,7 +19,7 @@ class AddContact extends Component {
     });
   };
 
-  handleSubmit = async (dispatch, e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
     const { name, email, phone } = this.state;
@@ -49,13 +52,15 @@ class AddContact extends Component {
     }
 
     const newContact = {
-      // id: uuid(),
+      id: uuid(),
       name,
       email,
       phone
     };
 
     // TODO: add new Contact
+
+    this.props.addContact(newContact);
 
     //Clear state(inputs)
     this.setState({
@@ -111,4 +116,11 @@ class AddContact extends Component {
   }
 }
 
-export default AddContact;
+AddContact.propTypes = {
+  addContact: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { addContact }
+)(AddContact);

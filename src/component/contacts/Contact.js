@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteContact } from '../../actions/contactActions';
 
 class Contact extends Component {
   state = {
     showDetails: false
   };
 
-  handleDeleteBtn = () => {};
+  handleDeleteBtn = id => {
+    this.props.deleteContact(id);
+  };
 
   render() {
     const { id, name, email, phone } = this.props.contact;
@@ -29,7 +33,7 @@ class Contact extends Component {
           <i
             className="fas fa-times "
             style={{ cursor: 'pointer', float: 'right', color: 'red' }}
-            onClick={this.handleDeleteBtn}
+            onClick={this.handleDeleteBtn.bind(this, id)}
           />
           <Link to={`contact/edit/${id}`}>
             <i
@@ -59,7 +63,11 @@ class Contact extends Component {
 }
 
 Contact.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
+  deleteContact: PropTypes.func.isRequired
 };
 
-export default Contact;
+export default connect(
+  null,
+  { deleteContact }
+)(Contact);
